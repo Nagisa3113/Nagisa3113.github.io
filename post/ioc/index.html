@@ -105,7 +105,7 @@
 <p>StraneIoC是一个轻量、高扩展性的Unity,C#的IoC框架,其使用的方式为依赖注入.</p>
 <p><a href="https://strangeioc.github.io/strangeioc/">StrangeIoC官网</a>一张图可以概括,我们先继续往下看 <img src="https://strangeioc.github.io/strangeioc/class-flow.png" alt="img"></p>
 <p>官方给出的例子: 假如我在玩一个游戏,每次结束时如果获得了更高的分数,想要将最高分上传到Facebook,在传统Unity方式下,会是这样的</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyShip</span> : MonoBehaviour {    
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyShip</span> : MonoBehaviour {    
     <span style="color:#66d9ef">private</span> FacebookService facebook;    
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> myScore;     
     <span style="color:#66d9ef">void</span> Awake(){    	
@@ -118,13 +118,13 @@
 }
 </code></pre></div><p>这样写有两个问题,首先,它的作用相当于控制器,与游戏本身逻辑和服务器紧密相连;第二,facebook作为它的singleton成员,如果我们想换成Twitter或Google+,会变得麻烦.总的来说,当需求发生变化时,需要修改很多代码.</p>
 <p>但在IOC中,可以这样写</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyShip</span> : MonoBehaviour {   
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyShip</span> : MonoBehaviour {   
     <span style="color:#66d9ef">void</span> onDie(){      
         dispatcher.Dispatch(GameEvent.SHIP_DEAD);   
     } 
 } 
 </code></pre></div><p>我们移除了逻辑部分,只需要发出一个信息(事件)–“游戏结束了”,让Command单元去处理,它会是这样的:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OnShipDeathCommand</span> : EventCommand {   
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OnShipDeathCommand</span> : EventCommand {   
 <span style="color:#a6e22e">    [Inject]</span>   
     ISocialService socialService{<span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>;}      
 <span style="color:#a6e22e">    [Inject]</span>   
@@ -136,7 +136,7 @@
 }
 </code></pre></div><p>注意其中的[Inject],我们注入的是实现接口的类而不是特定的类,在这个例子中,我们就可以不再依赖具体的Facebook或Twitter,我们只用知道需要一个社交服务.</p>
 <p>最后,我们需要绑定相关</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#75715e">#if UNITY_ANDROID 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#75715e">#if UNITY_ANDROID 
 </span><span style="color:#75715e"></span>    injectionBinder.Bind&lt;ISocialService&gt;().To&lt;GoogleService&gt;().AsSingleton(); 
 <span style="color:#75715e">#else injectionBinder.Bind&lt;ISocialService&gt;().To&lt;FacebookService&gt;().AsSingleton(); 
 </span><span style="color:#75715e">#endif //...or... //

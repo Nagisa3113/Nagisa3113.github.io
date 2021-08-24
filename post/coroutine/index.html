@@ -89,7 +89,7 @@
 <li>协程可以<strong>互相嵌套</strong></li>
 </ol>
 <p>这是一个协程实现的简单状态机:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#">IEnumerator State() { 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#">IEnumerator State() { 
     <span style="color:#75715e">//local variable 	
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">//State.Enter 
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) { 	
@@ -118,18 +118,18 @@
 </ul>
 <h2 id="实例">实例</h2>
 <p>一个搜寻敌人并发射子弹的炮塔</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Turret</span> : MonoBehaviour {    
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Turret</span> : MonoBehaviour {    
 <span style="color:#a6e22e">    [...]</span> <span style="color:#75715e">// 检查器配置变量     
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// 唯一的状态是根协程节点   
-</span><span style="color:#75715e"></span>    Coroutines.Corountine _Main;     
+</span><span style="color:#75715e"></span>    Coroutines.Corountine <span style="color:#ae81ff">_</span>Main;     
     <span style="color:#75715e">// 初始化    
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> Start()    {    	
-        _Main = <span style="color:#66d9ef">new</span> coroutines.Corountine(Main());    
+        <span style="color:#ae81ff">_</span>Main = <span style="color:#66d9ef">new</span> coroutines.Corountine(Main());    
     }     	
     <span style="color:#75715e">// 每帧调用一次    
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> Update() { 
         <span style="color:#75715e">// 更新根节点    	
-</span><span style="color:#75715e"></span>        _Main.Update();    
+</span><span style="color:#75715e"></span>        <span style="color:#ae81ff">_</span>Main.Update();    
     }     
     <span style="color:#75715e">// 根协程节点    
 </span><span style="color:#75715e"></span>    IEnumerable Main() {    	
@@ -140,12 +140,12 @@
 </span><span style="color:#75715e"></span>            Transform target = <span style="color:#66d9ef">null</span>;     		
             <span style="color:#66d9ef">yield</span> <span style="color:#66d9ef">return</span> ControlFlow.ExecuteWhileRunning(            
             <span style="color:#75715e">// 核心代码，搜寻目标并将其存放在 target 变量中            
-</span><span style="color:#75715e"></span>            FindTargetInRadius(_LockOnRadius, trgt =&gt; target = trgt),             <span style="color:#75715e">// 如果还处于搜寻状态就执行
+</span><span style="color:#75715e"></span>            FindTargetInRadius(<span style="color:#ae81ff">_L</span>ockOnRadius, trgt =&gt; target = trgt),             <span style="color:#75715e">// 如果还处于搜寻状态就执行
 </span><span style="color:#75715e"></span>            Idle(startYAngle));             <span style="color:#75715e">// 此处我们应当有一个非空的目标！            
 </span><span style="color:#75715e"></span>            <span style="color:#75715e">// 追踪目标并朝它射击            
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">yield</span> <span style="color:#66d9ef">return</span> ControlFlow.ExecuteWhile(            
             <span style="color:#75715e">// 条件            
-</span><span style="color:#75715e"></span>            () =&gt; Vector3.Distance(target.postion, transform.postion) &lt; _LockOffRadius,            
+</span><span style="color:#75715e"></span>            () =&gt; Vector3.Distance(target.postion, transform.postion) &lt; <span style="color:#ae81ff">_L</span>ockOffRadius,            
             <span style="color:#75715e">// 条件为真时追踪目标            
 </span><span style="color:#75715e"></span>            TrackTarget(taget),            
             <span style="color:#75715e">// 条件为真时发射炮弹            
@@ -154,32 +154,32 @@
     }
 }
 </code></pre></div><h2 id="定义接口">定义接口</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> ICoroutine : System.IDisposable {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> ICoroutine : System.IDisposable {
     <span style="color:#66d9ef">bool</span> IsRunning { <span style="color:#66d9ef">get</span>; }    
     <span style="color:#66d9ef">void</span> Update();    
     <span style="color:#66d9ef">void</span> Reset(); 
 }
 </code></pre></div><h2 id="基本协程节点">基本协程节点</h2>
 <p><img src="https://www.gamasutra.com/db_area/images/blog/267441/Coroutine%20Child%20Node%20(1).png" alt="img"></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Coroutine</span> : ICoroutine {    
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Coroutine</span> : ICoroutine {    
     <span style="color:#75715e">// 存放枚举变量资源    
-</span><span style="color:#75715e"></span>    IEnumerable _Source;     <span style="color:#75715e">// 存放协程的运行实例   
-</span><span style="color:#75715e"></span>    IEnumerable _StateData;     <span style="color:#75715e">// 存放生成的子节点    
-</span><span style="color:#75715e"></span>    ICoroutine _Subroutine;     <span style="color:#75715e">// 当前节点的状态    
+</span><span style="color:#75715e"></span>    IEnumerable <span style="color:#ae81ff">_</span>Source;     <span style="color:#75715e">// 存放协程的运行实例   
+</span><span style="color:#75715e"></span>    IEnumerable <span style="color:#ae81ff">_</span>StateData;     <span style="color:#75715e">// 存放生成的子节点    
+</span><span style="color:#75715e"></span>    ICoroutine <span style="color:#ae81ff">_</span>Subroutine;     <span style="color:#75715e">// 当前节点的状态    
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">enum</span> CorountineState    { 	
 <span style="color:#a6e22e">        [...]</span> <span style="color:#75715e">//存放是否使用迭代器，是否更新子协程状态等状态数据    
 </span><span style="color:#75715e"></span>    }     
-    CorountineState _ExecutionState; 
+    CorountineState <span style="color:#ae81ff">_</span>ExecutionState; 
 }
 </code></pre></div><h2 id="循环节点">循环节点</h2>
 <p>包含:子节点和是否执行子节点的判断条件 <img src="https://www.gamasutra.com/db_area/images/blog/267441/Coroutine%20Child%20Node%20(1).png" alt="img"></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#75715e">// 只要主条件为真就运行子节点 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#75715e">// 只要主条件为真就运行子节点 
 </span><span style="color:#75715e">// 只要主条件为假就停止运行子节点 
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">While</span> : ICoroutine {    
-    System.Func _MasterCondition;    
-    ICoroutine _SlaveSubroutine; <span style="color:#75715e">// 不必拥有状态，因为它不会被结束！     
+    System.Func <span style="color:#ae81ff">_</span>MasterCondition;    
+    ICoroutine <span style="color:#ae81ff">_</span>SlaveSubroutine; <span style="color:#75715e">// 不必拥有状态，因为它不会被结束！     
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">enum</span> WhileNodeState    { 	Running, 	Complete, 	Disposed    }     
-    WhileNodeState _CurrentState;     [...] 
+    WhileNodeState <span style="color:#ae81ff">_</span>CurrentState;     [...] 
 }
 </code></pre></div><h2 id="并行节点">并行节点</h2>
 <p>ExecuteWhile() 会像这样运行： <img src="https://www.gamasutra.com/db_area/images/blog/267441/Concurrent%20(ICoroutine).png" alt="img"></p>
@@ -188,7 +188,7 @@
 <li>创建一个带判断条件的循环节点</li>
 <li>通过 CallInstruction 运行循环节点，先前创建的并行节点将作为循环节点的子节点。</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#75715e">// 条件为真时，一次运行多个协程 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#75715e">// 条件为真时，一次运行多个协程 
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> CallInsturction ExecuteWhile(System.Func masterConditio, Params IEnumerable[] slaveSubroutines) {    
     <span style="color:#75715e">// 创建一个并行节点，以传入子协程参数作为子节点    
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// 当所有子节点结束运行后并行节点才会结束运行    
@@ -201,7 +201,7 @@
 }
 </code></pre></div><h2 id="向调用位置返回值">向调用位置返回值</h2>
 <p>协程并不直接支持向调用它们的语句返回数据(协程处理的大都是一些中间数据),我们可以使用闭包(或者说lambda表达式)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#">IEnumerable FindTargetInRadius(<span style="color:#66d9ef">float</span> radius, System.Action targetFound) {    
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#">IEnumerable FindTargetInRadius(<span style="color:#66d9ef">float</span> radius, System.Action targetFound) {    
     <span style="color:#75715e">// 目前只有一个潜在的目标，因此...    
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> playerObj = GameObject.FindGameObjectWithTag(<span style="color:#e6db74">&#34;Player&#34;</span>);    
     <span style="color:#66d9ef">if</span> (playerObj != <span style="color:#66d9ef">null</span>) {
@@ -214,11 +214,11 @@
     <span style="color:#75715e">// 其他需要留神的玩意儿... 
 </span><span style="color:#75715e"></span>}
 </code></pre></div><p>FindTargetInRadius() 接受两个参数,其中一个为搜寻半径,另一个参数是返回 void 的函数,负责控制炮塔的动作。当找到目标后，它就会执行针对锁定目标的动作.这段代码位于 Main() 协程之中,如下所示：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#75715e">// 搜寻目标 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#75715e">// 搜寻目标 
 </span><span style="color:#75715e"></span>Transform target = <span style="color:#66d9ef">null</span>; 
 <span style="color:#66d9ef">yield</span> <span style="color:#66d9ef">return</span> ControlFlow.ExecuteWhileRunning(
     <span style="color:#75715e">// 核心代码，搜寻目标并将其存放在 target 变量中
-</span><span style="color:#75715e"></span>    FindTargetInRadius(_LockOnRadius, trgt =&gt; target = trgt),
+</span><span style="color:#75715e"></span>    FindTargetInRadius(<span style="color:#ae81ff">_L</span>ockOnRadius, trgt =&gt; target = trgt),
     <span style="color:#75715e">// 如果还处于搜寻状态就执行    
 </span><span style="color:#75715e"></span>    Idle(startYAngle)
 );

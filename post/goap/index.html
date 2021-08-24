@@ -97,7 +97,7 @@
 <p>找到一个还不错的项目，<a href="http://github.com/nagisa3113/BlueGameAI">BlueGameAI</a></p>
 <h3 id="state">State</h3>
 <p>用于记录角色状态，Action表示某个行动</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class State{    
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class State{    
     <span style="color:#75715e">//当状态被改变时触发的事件    
 </span><span style="color:#75715e"></span>    event OnChange(); 
 } 
@@ -113,7 +113,7 @@ class ActionHandle(){
 } 
 </code></pre></div><h3 id="actionfsm">ActionFSM</h3>
 <p>动作的状态机，其中也维护着一个动作状态（FSMState），要与人物的状态（AgentState）区别开来</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class FSMState{    
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class FSMState{    
     <span style="color:#66d9ef">void</span> Enter();    
     <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Execute</span>();    
     <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Exit</span>() 
@@ -129,7 +129,7 @@ class ActionFSM{
 }
 </code></pre></div><h3 id="goal">Goal</h3>
 <p>目标，比如获得武器，消灭敌人</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class Goal{    
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class Goal{    
     <span style="color:#75715e">//目标的优先级   	
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> priority;    
     <span style="color:#75715e">//激活目标的前置条件    
@@ -140,7 +140,7 @@ class ActionFSM{
 
 </code></pre></div><h3 id="agent">Agent</h3>
 <p>挂载到角色身上，它整合了其他组件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class <span style="color:#a6e22e">Agent</span>(){    
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class <span style="color:#a6e22e">Agent</span>(){    
     <span style="color:#75715e">//角色状态    
 </span><span style="color:#75715e"></span>    State AgentState;    
      <span style="color:#75715e">//Action管理对象    
@@ -152,7 +152,7 @@ class ActionFSM{
 }
 </code></pre></div><h3 id="trigger">Trigger</h3>
 <p>触发器，是影响决策改变的直接原因</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class Trigger
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class Trigger
 {    
     <span style="color:#75715e">//优先级    
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> priority    
@@ -168,8 +168,8 @@ class ActionFSM{
 } 
 </code></pre></div><h3 id="planner">Planner</h3>
 <p>对需要执行的动作进行动态规划</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class <span style="color:#a6e22e">Planner</span>(){    <span style="color:#75715e">//制定计划    //参数为目标    //返回值为行为的序列    Queue&lt;Action&gt; BuildPlan(Goal goal); } 
-</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class Performer{    <span style="color:#75715e">//plan即为上面Planner计算出的行为序列    Queue&lt;Action&gt; plan = Planner.BuildPlan(currentGoal);        //执行计划    void Next(){        //plan出栈，执行下一个Action        Agent.ActionManager.ExecuteNewState(plan.Dequeue());    } } 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class <span style="color:#a6e22e">Planner</span>(){    <span style="color:#75715e">//制定计划    //参数为目标    //返回值为行为的序列    Queue&lt;Action&gt; BuildPlan(Goal goal); } 
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">class Performer{    <span style="color:#75715e">//plan即为上面Planner计算出的行为序列    Queue&lt;Action&gt; plan = Planner.BuildPlan(currentGoal);        //执行计划    void Next(){        //plan出栈，执行下一个Action        Agent.ActionManager.ExecuteNewState(plan.Dequeue());    } } 
 </span></code></pre></div><h2 id="执行过程">执行过程</h2>
 <ol>
 <li>假设Agent初始状态为idle，ActionFSM为空</li>
