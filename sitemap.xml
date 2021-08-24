@@ -3,16 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nagisa3113.com/</loc>
-    <lastmod>2021-02-06T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagisa3113.com/post/</loc>
-    <lastmod>2021-02-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://nagisa3113.com/post/games/</loc>
-    <lastmod>2021-02-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://nagisa3113.com/post/2021summary/</loc>
-    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagisa3113.com/post/tdd/</loc>
     <lastmod>2020-05-12T00:00:00+00:00</lastmod>
@@ -26,12 +20,6 @@
     <loc>https://nagisa3113.com/post/why-computer/</loc>
     <lastmod>2020-03-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagisa3113.com/post/dark-souls/</loc>
-    <lastmod>2020-02-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://nagisa3113.com/post/raspberrypi/</loc>
-    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://nagisa3113.com/post/functional-programming/</loc>
     <lastmod>2019-12-14T00:00:00+00:00</lastmod>
   </url><url>
@@ -42,9 +30,6 @@
     <lastmod>2019-09-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagisa3113.com/post/japan-visist/</loc>
-    <lastmod>2019-09-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://nagisa3113.com/post/game-ai/</loc>
     <lastmod>2019-09-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagisa3113.com/post/ioc/</loc>
