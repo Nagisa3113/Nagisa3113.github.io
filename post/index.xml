@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; &lt;a href=&#34;https://github.com/nagisa3113&#34;&gt;nagisa&lt;/a&gt; 2020</copyright>
-    <lastBuildDate>Tue, 12 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://nagisa3113.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://nagisa3113.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>玩游戏</title>
+      <link>https://nagisa3113.com/post/games/</link>
+      <pubDate>Sat, 06 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://nagisa3113.com/post/games/</guid>
+      <description>&lt;p&gt;一些游戏推荐&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>测试驱动开发</title>
       <link>https://nagisa3113.com/post/tdd/</link>
@@ -42,6 +51,24 @@
       
       <guid>https://nagisa3113.com/post/why-computer/</guid>
       <description>&lt;p&gt;Unix 是简单的，你不需要成为一个天才或是计算机专家。但是在这个冲斥着 Windows 错误观念的世界，你需要信念和勇气才能理解它的简单 ————&lt;a href=&#34;https://www.douban.com/group/topic/12121637/&#34;&gt;王垠：《完全用Linux工作》&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>树莓派</title>
+      <link>https://nagisa3113.com/post/raspberrypi/</link>
+      <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://nagisa3113.com/post/raspberrypi/</guid>
+      <description>&lt;p&gt;树莓派（raspberriPi）是一个微型的，信用卡大小的可以运行Linux的单板机。它使用的是基于精简指令集（RISC）的ARM架构的处理器，相比于Intel采用的x86的复杂指令集（CISC），它的结构简单，功耗低，价格低，非常适合(穷)学生。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>给ThinkPad-X220安装ArchLinux</title>
+      <link>https://nagisa3113.com/post/archlinux/</link>
+      <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://nagisa3113.com/post/archlinux/</guid>
+      <description>&lt;p&gt;记录一下ArchLinux的配置过程，防止哪天重装时忘了&lt;/p&gt;</description>
     </item>
     
     <item>
